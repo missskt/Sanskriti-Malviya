@@ -5,23 +5,23 @@
 
 'use strict';
 
-/* ═══════════════════════════════════════════════
-   1. LOCOMOTIVE SCROLL + GSAP SCROLLTRIGGER SETUP
-   ═══════════════════════════════════════════════ */
+const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ═══ 1. LOCOMOTIVE + SCROLLTRIGGER BRIDGE ═══ */
 gsap.registerPlugin(ScrollTrigger);
 
 const scrollContainer = document.querySelector('[data-scroll-container]');
 
 const locoScroll = new LocomotiveScroll({
   el: scrollContainer,
-  smooth: true,
+  smooth: !reduceMotion,
   multiplier: 0.85,
   lerp: 0.075,
-  smartphone: { smooth: true },
-  tablet: { smooth: true }
+  smartphone: { smooth: false },
+  tablet: { smooth: false }
 });
 
-// Bridge Locomotive ↔ GSAP ScrollTrigger
 locoScroll.on('scroll', ScrollTrigger.update);
 
 ScrollTrigger.scrollerProxy(scrollContainer, {
@@ -40,57 +40,54 @@ ScrollTrigger.scrollerProxy(scrollContainer, {
 
 ScrollTrigger.addEventListener('refresh', () => locoScroll.update());
 
-
-/* ═══════════════════════════════════════════════
-   2. CUSTOM CURSOR
-   ═══════════════════════════════════════════════ */
-const cursor     = document.getElementById('cursor');
-const cursorRing = document.getElementById('cursor-ring');
-let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
-document.addEventListener('mousemove', e => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  cursor.style.left = mouseX + 'px';
-  cursor.style.top  = mouseY + 'px';
-});
-
-(function animateRing() {
-  ringX += (mouseX - ringX) * 0.13;
-  ringY += (mouseY - ringY) * 0.13;
-  cursorRing.style.left = ringX + 'px';
-  cursorRing.style.top  = ringY + 'px';
-  requestAnimationFrame(animateRing);
-})();
-
-const hoverTargets = 'a, button, .skill-card, .ach-item, .phil-item, .process-pill, .id-stat, .tool-chip, .quiz-option, .akss-mood, .exp-block, .pv-frame, .proj-cta-btn';
-document.querySelectorAll(hoverTargets).forEach(el => {
-  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-});
-
-document.addEventListener('mouseleave', () => {
-  cursor.style.opacity = '0';
-  cursorRing.style.opacity = '0';
-});
-document.addEventListener('mouseenter', () => {
-  cursor.style.opacity = '1';
-  cursorRing.style.opacity = '1';
-});
+/* Shared helper so every trigger uses the same scroller */
+const st = (extra) => Object.assign({ scroller: scrollContainer }, extra);
 
 
-/* ═══════════════════════════════════════════════
-   3. NAVBAR SCROLL STATE
-   ═══════════════════════════════════════════════ */
+/* ═══ 2. CUSTOM CURSOR (desktop only) ═══ */
+if (!isTouch) {
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+
+  (function animateRing() {
+    ringX += (mouseX - ringX) * 0.13;
+    ringY += (mouseY - ringY) * 0.13;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  })();
+
+  const hoverTargets = 'a, button, .skill-card, .ach-item, .phil-item, .process-pill, .id-stat, .tool-chip, .akss-mood, .exp-block, .pv-frame, .proj-cta-btn';
+  document.querySelectorAll(hoverTargets).forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; ring.style.opacity = '0'; });
+  document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; ring.style.opacity = '1'; });
+}
+
+
+/* ═══ 3. NAVBAR + PROGRESS BAR + BACK-TO-TOP ═══ */
 const navbar = document.getElementById('navbar');
-locoScroll.on('scroll', ({ scroll }) => {
+const progressFill = document.getElementById('progress-fill');
+const toTop = document.getElementById('to-top');
+
+locoScroll.on('scroll', ({ scroll, limit }) => {
   navbar.classList.toggle('scrolled', scroll.y > 60);
+  progressFill.style.transform = `scaleX(${limit.y ? scroll.y / limit.y : 0})`;
+  toTop.classList.toggle('show', scroll.y > 700);
 });
 
 
-/* ═══════════════════════════════════════════════
-   4. SMOOTH SCROLL FOR NAV LINKS
-   ═══════════════════════════════════════════════ */
+/* ═══ 4. SMOOTH ANCHOR LINKS ═══ */
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
     const target = document.querySelector(link.getAttribute('href'));
@@ -101,565 +98,273 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 });
 
 
-/* ═══════════════════════════════════════════════
-   5. HERO ENTRANCE ANIMATIONS
-   ═══════════════════════════════════════════════ */
-const heroTL = gsap.timeline({ defaults: { ease: 'power4.out' } });
+/* ═══ 5. PRELOADER → HERO INTRO ═══ */
+gsap.set('.hero-name-first, .hero-name-last', { clipPath: 'inset(0 100% 0 0)' });
+gsap.set(['.hero-eyebrow', '.hero-name', '.hero-role', '.hero-bio', '.hero-actions', '.hero-right'], { y: 30 });
 
-heroTL
-  .to('.hero-eyebrow',  { opacity: 1, y: 0, duration: 0.9, delay: 0.2 })
-  .to('.hero-name',     { opacity: 1, y: 0, duration: 0.9 }, '-=0.5')
-  .to('.hero-name-first', {
-    clipPath: 'inset(0 0% 0 0)',
-    duration: 1.1,
-    ease: 'expo.out'
-  }, '<')
-  .to('.hero-name-last', {
-    clipPath: 'inset(0 0% 0 0)',
-    duration: 1.1,
-    ease: 'expo.out'
-  }, '<0.1')
-  .to('.hero-role',     { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
-  .to('.hero-bio',      { opacity: 1, y: 0, duration: 0.8 }, '-=0.55')
-  .to('.hero-actions',  { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
-  .to('.hero-right',    { opacity: 1, y: 0, duration: 1.0, ease: 'power3.out' }, '-=0.7');
-
-// Set initial clip-path for name reveal
-gsap.set('.hero-name-first, .hero-name-last', {
-  clipPath: 'inset(0 100% 0 0)'
-});
-
-
-/* ═══════════════════════════════════════════════
-   6. TYPING EFFECT — HERO EYEBROW
-   ═══════════════════════════════════════════════ */
-const eyebrow     = document.querySelector('.hero-eyebrow-label');
-const eyebrowText = eyebrow ? eyebrow.textContent.trim() : '';
-if (eyebrow) {
-  eyebrow.textContent = '';
-  let i = 0;
-  const type = () => {
-    if (i < eyebrowText.length) {
-      eyebrow.textContent += eyebrowText[i++];
-      setTimeout(type, 48);
-    }
-  };
-  setTimeout(type, 900);
+function playHero() {
+  const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+  tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.9 })
+    .to('.hero-name', { opacity: 1, y: 0, duration: 0.9 }, '-=0.5')
+    .to('.hero-name-first', { clipPath: 'inset(0 0% 0 0)', duration: 1.1, ease: 'expo.out' }, '<')
+    .to('.hero-name-last', { clipPath: 'inset(0 0% 0 0)', duration: 1.1, ease: 'expo.out' }, '<0.1')
+    .to('.hero-role', { opacity: 1, y: 0, duration: 0.8, onStart: scrambleRole }, '-=0.6')
+    .to('.hero-bio', { opacity: 1, y: 0, duration: 0.8 }, '-=0.55')
+    .to('.hero-actions', { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
+    .to('.hero-right', { opacity: 1, y: 0, duration: 1.0, ease: 'power3.out' }, '-=0.7');
+  startTyping();
 }
 
+/* Typing effect for the eyebrow */
+function startTyping() {
+  const eyebrow = document.querySelector('.hero-eyebrow-label');
+  if (!eyebrow) return;
+  const full = eyebrow.textContent.trim();
+  eyebrow.textContent = '';
+  let i = 0;
+  (function type() {
+    if (i < full.length) { eyebrow.textContent += full[i++]; setTimeout(type, 45); }
+  })();
+}
 
-/* ═══════════════════════════════════════════════
-   7. SCROLL REVEAL — all .gs-reveal elements
-   ═══════════════════════════════════════════════ */
-document.querySelectorAll('.gs-reveal').forEach((el, i) => {
-  gsap.fromTo(el,
-    { opacity: 0, y: 55 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 1.1,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: el,
-        scroller: scrollContainer,
-        start: 'top 85%',
-        end: 'bottom 20%',
-        toggleActions: 'play none none none'
-      }
-    }
-  );
-});
+/* Text scramble for the hero role line */
+function scrambleRole() {
+  const el = document.getElementById('hero-role');
+  if (!el || reduceMotion) return;
+  const finalText = el.textContent;
+  const chars = '!<>-_\\/[]{}—=+*^?#';
+  let frame = 0;
+  const total = 28;
+  const timer = setInterval(() => {
+    const progress = frame / total;
+    el.textContent = finalText.split('').map((ch, idx) => {
+      if (ch === ' ' || idx < finalText.length * progress) return ch;
+      return chars[Math.floor(Math.random() * chars.length)];
+    }).join('');
+    if (++frame > total) { clearInterval(timer); el.textContent = finalText; }
+  }, 32);
+}
 
+(function preloader() {
+  const pre = document.getElementById('preloader');
+  const num = document.getElementById('pre-num');
+  const fill = document.getElementById('pre-fill');
+  const counter = { v: 0 };
 
-/* ═══════════════════════════════════════════════
-   8. PHILOSOPHY ITEMS STAGGER
-   ═══════════════════════════════════════════════ */
-gsap.fromTo('.phil-item',
-  { opacity: 0, x: -30 },
-  {
-    opacity: 1,
-    x: 0,
-    duration: 0.8,
-    stagger: 0.15,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.philosophy-list',
-      scroller: scrollContainer,
-      start: 'top 80%'
-    }
-  }
-);
-
-
-/* ═══════════════════════════════════════════════
-   9. SKILL BARS ANIMATION
-   ═══════════════════════════════════════════════ */
-document.querySelectorAll('.skill-bar-fill').forEach(bar => {
-  const targetWidth = bar.dataset.width + '%';
-  gsap.set(bar, { width: '0%' });
-
-  ScrollTrigger.create({
-    trigger: bar,
-    scroller: scrollContainer,
-    start: 'top 85%',
-    onEnter: () => {
-      gsap.to(bar, {
-        width: targetWidth,
-        duration: 1.6,
-        ease: 'power3.out',
-        delay: 0.2
+  gsap.to(counter, {
+    v: 100,
+    duration: reduceMotion ? 0.1 : 1.4,
+    ease: 'power2.inOut',
+    onUpdate() {
+      const v = Math.round(counter.v);
+      num.textContent = v;
+      fill.style.width = v + '%';
+    },
+    onComplete() {
+      gsap.to(pre, {
+        yPercent: -100,
+        duration: 0.9,
+        ease: 'power4.inOut',
+        onComplete() { pre.remove(); playHero(); locoScroll.update(); ScrollTrigger.refresh(); }
       });
     }
   });
+})();
+
+
+/* ═══ 6. SCROLL REVEAL ═══ */
+document.querySelectorAll('.gs-reveal').forEach(el => {
+  gsap.fromTo(el,
+    { opacity: 0, y: 55 },
+    { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out',
+      scrollTrigger: st({ trigger: el, start: 'top 88%', toggleActions: 'play none none none' }) }
+  );
 });
 
-
-/* ═══════════════════════════════════════════════
-   10. COUNTER ANIMATION
-   ═══════════════════════════════════════════════ */
-function animateCounter(el) {
-  const target   = parseFloat(el.dataset.target);
-  const suffix   = el.dataset.suffix || '';
-  const isFloat  = target % 1 !== 0;
-  const duration = 1600;
-  const start    = performance.now();
-
-  function step(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const eased    = 1 - Math.pow(1 - progress, 4);
-    const value    = eased * target;
-    el.textContent = (isFloat ? value.toFixed(1) : Math.floor(value)) + suffix;
-    if (progress < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
+/* ═══ 7. STAGGERED GROUPS ═══ */
+function stagger(selector, triggerSel, from, opts = {}) {
+  gsap.fromTo(selector,
+    Object.assign({ opacity: 0 }, from),
+    Object.assign({ opacity: 1, x: 0, y: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out',
+      scrollTrigger: st({ trigger: triggerSel, start: 'top 82%' }) }, opts)
+  );
 }
+stagger('.phil-item', '.philosophy-list', { x: -30 });
+stagger('.skill-card', '.skills-grid', { y: 40 });
+stagger('.ach-item', '.ach-list', { x: 30 }, { duration: 0.7, stagger: 0.1 });
+stagger('.edu-item', '.edu-items', { x: -30 }, { duration: 0.7 });
+stagger('.tool-chip', '.tools-row', { scale: 0.85 }, { scale: 1, duration: 0.5, stagger: 0.05, ease: 'back.out(1.5)' });
 
-document.querySelectorAll('[data-target]').forEach(el => {
-  ScrollTrigger.create({
-    trigger: el,
-    scroller: scrollContainer,
-    start: 'top 80%',
-    onEnter: () => animateCounter(el)
-  });
+
+/* ═══ 8. SKILL BARS ═══ */
+document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+  gsap.set(bar, { width: '0%' });
+  ScrollTrigger.create(st({
+    trigger: bar, start: 'top 90%', once: true,
+    onEnter: () => gsap.to(bar, { width: bar.dataset.width + '%', duration: 1.6, ease: 'power3.out', delay: 0.2 })
+  }));
 });
 
 
-/* ═══════════════════════════════════════════════
-   11. PROJECT BLOCKS — HORIZONTAL SLIDE-IN
-   ═══════════════════════════════════════════════ */
-document.querySelectorAll('.project-block').forEach((block, i) => {
-  const isFlipped = block.classList.contains('flipped');
+/* ═══ 9. COUNTERS ═══ */
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const start = performance.now();
+  (function step(now) {
+    const p = Math.min((now - start) / 1600, 1);
+    el.textContent = Math.floor((1 - Math.pow(1 - p, 4)) * target) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+    else el.textContent = target + suffix;
+  })(start);
+}
+document.querySelectorAll('[data-target]').forEach(el => {
+  ScrollTrigger.create(st({ trigger: el, start: 'top 90%', once: true, onEnter: () => animateCounter(el) }));
+});
+
+
+/* ═══ 10. PROJECT BLOCKS ═══ */
+document.querySelectorAll('.project-block').forEach(block => {
+  const flipped = block.classList.contains('flipped');
+  const trigger = st({ trigger: block, start: 'top 78%' });
 
   gsap.fromTo(block.querySelector('.project-info'),
-    { opacity: 0, x: isFlipped ? 60 : -60 },
-    {
-      opacity: 1,
-      x: 0,
-      duration: 1.0,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: block,
-        scroller: scrollContainer,
-        start: 'top 75%'
-      }
-    }
-  );
+    { opacity: 0, x: flipped ? 60 : -60 },
+    { opacity: 1, x: 0, duration: 1, ease: 'power3.out', scrollTrigger: trigger });
 
   gsap.fromTo(block.querySelector('.project-visual'),
-    { opacity: 0, x: isFlipped ? -60 : 60 },
-    {
-      opacity: 1,
-      x: 0,
-      duration: 1.0,
-      ease: 'power3.out',
-      delay: 0.15,
-      scrollTrigger: {
-        trigger: block,
-        scroller: scrollContainer,
-        start: 'top 75%'
-      }
-    }
-  );
+    { opacity: 0, x: flipped ? -60 : 60 },
+    { opacity: 1, x: 0, duration: 1, ease: 'power3.out', delay: 0.15, scrollTrigger: trigger });
+
+  gsap.fromTo(block.querySelector('.project-idx'),
+    { opacity: 0, y: 30 },
+    { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', scrollTrigger: trigger });
 });
 
 
-/* ═══════════════════════════════════════════════
-   12. SKILL CARDS STAGGER
-   ═══════════════════════════════════════════════ */
-gsap.fromTo('.skill-card',
-  { opacity: 0, y: 40 },
-  {
-    opacity: 1,
-    y: 0,
-    duration: 0.8,
-    stagger: 0.12,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.skills-grid',
-      scroller: scrollContainer,
-      start: 'top 80%'
-    }
-  }
-);
-
-
-/* ═══════════════════════════════════════════════
-   13. ACHIEVEMENT ITEMS STAGGER
-   ═══════════════════════════════════════════════ */
-gsap.fromTo('.ach-item',
-  { opacity: 0, x: 30 },
-  {
-    opacity: 1,
-    x: 0,
-    duration: 0.7,
-    stagger: 0.1,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.ach-list',
-      scroller: scrollContainer,
-      start: 'top 80%'
-    }
-  }
-);
-
-
-/* ═══════════════════════════════════════════════
-   14. EDUCATION ITEMS STAGGER
-   ═══════════════════════════════════════════════ */
-gsap.fromTo('.edu-item',
-  { opacity: 0, x: -30 },
-  {
-    opacity: 1,
-    x: 0,
-    duration: 0.7,
-    stagger: 0.12,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.edu-items',
-      scroller: scrollContainer,
-      start: 'top 80%'
-    }
-  }
-);
-
-
-/* ═══════════════════════════════════════════════
-   15. SECTION HEADINGS — WORD BY WORD
-   ═══════════════════════════════════════════════ */
+/* ═══ 11. SECTION HEADINGS — WORD BY WORD ═══ */
 document.querySelectorAll('.section-heading').forEach(heading => {
-  // Split into words and wrap
   const words = heading.innerHTML.split(/\s+/);
-  heading.innerHTML = words.map(w => `<span class="sh-word" style="display:inline-block;overflow:hidden;"><span style="display:inline-block;">${w}</span></span>`).join(' ');
+  heading.innerHTML = words.map(w =>
+    `<span class="sh-word" style="display:inline-block;overflow:hidden;vertical-align:bottom;"><span style="display:inline-block;">${w}</span></span>`
+  ).join(' ');
 
-  const spans = heading.querySelectorAll('.sh-word > span');
-
-  gsap.fromTo(spans,
+  gsap.fromTo(heading.querySelectorAll('.sh-word > span'),
     { y: '100%', opacity: 0 },
-    {
-      y: '0%',
-      opacity: 1,
-      duration: 0.8,
-      stagger: 0.08,
-      ease: 'power4.out',
-      scrollTrigger: {
-        trigger: heading,
-        scroller: scrollContainer,
-        start: 'top 88%'
-      }
-    }
+    { y: '0%', opacity: 1, duration: 0.8, stagger: 0.08, ease: 'power4.out',
+      scrollTrigger: st({ trigger: heading, start: 'top 90%' }) }
   );
 });
 
-
-/* ═══════════════════════════════════════════════
-   16. PARALLAX ON HERO BG GRID
-   ═══════════════════════════════════════════════ */
-gsap.to('.hero-bg-grid', {
-  y: '25%',
-  ease: 'none',
-  scrollTrigger: {
-    trigger: '#hero',
-    scroller: scrollContainer,
-    start: 'top top',
-    end: 'bottom top',
-    scrub: 1.5
-  }
+gsap.utils.toArray('.section-tag').forEach(tag => {
+  gsap.fromTo(tag, { opacity: 0, x: -24 },
+    { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out', scrollTrigger: st({ trigger: tag, start: 'top 90%' }) });
 });
 
 
-/* ═══════════════════════════════════════════════
-   17. ID CARD TILT EFFECT
-   ═══════════════════════════════════════════════ */
-const idCard = document.querySelector('.id-card');
-if (idCard) {
-  idCard.addEventListener('mousemove', e => {
-    const rect = idCard.getBoundingClientRect();
-    const cx   = rect.left + rect.width  / 2;
-    const cy   = rect.top  + rect.height / 2;
-    const rotX =  ((e.clientY - cy) / (rect.height / 2)) * -6;
-    const rotY =  ((e.clientX - cx) / (rect.width  / 2)) * 8;
-    gsap.to(idCard, {
-      rotateX: rotX,
-      rotateY: rotY,
-      scale: 1.015,
-      duration: 0.4,
-      transformPerspective: 900,
-      ease: 'power2.out'
-    });
+/* ═══ 12. HERO PARALLAX ═══ */
+gsap.to('.hero-bg-grid', {
+  y: '25%', ease: 'none',
+  scrollTrigger: st({ trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1.5 })
+});
+gsap.to('.hero-orb', {
+  y: '-30%', ease: 'none',
+  scrollTrigger: st({ trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1.2 })
+});
+
+
+/* ═══ 13. TILT (id card + project frames) ═══ */
+function addTilt(el, maxX, maxY) {
+  el.addEventListener('mousemove', e => {
+    const r = el.getBoundingClientRect();
+    const rotX = ((e.clientY - (r.top + r.height / 2)) / (r.height / 2)) * -maxX;
+    const rotY = ((e.clientX - (r.left + r.width / 2)) / (r.width / 2)) * maxY;
+    gsap.to(el, { rotateX: rotX, rotateY: rotY, scale: 1.015, duration: 0.4, transformPerspective: 900, ease: 'power2.out' });
   });
-  idCard.addEventListener('mouseleave', () => {
-    gsap.to(idCard, {
-      rotateX: 0,
-      rotateY: 0,
-      scale: 1,
-      duration: 0.6,
-      ease: 'power3.out'
+  el.addEventListener('mouseleave', () => {
+    gsap.to(el, { rotateX: 0, rotateY: 0, scale: 1, duration: 0.6, ease: 'power3.out' });
+  });
+}
+if (!isTouch && !reduceMotion) {
+  document.querySelectorAll('.id-card').forEach(el => addTilt(el, 6, 8));
+  document.querySelectorAll('.pv-frame.tilt').forEach(el => addTilt(el, 4, 6));
+}
+
+
+/* ═══ 14. SPOTLIGHT GLOW ON CARDS ═══ */
+if (!isTouch) {
+  document.querySelectorAll('.spot').forEach(el => {
+    el.addEventListener('mousemove', e => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      el.style.setProperty('--my', (e.clientY - r.top) + 'px');
     });
   });
 }
 
 
-/* ═══════════════════════════════════════════════
-   18. MARQUEE PAUSE ON HOVER
-   ═══════════════════════════════════════════════ */
+/* ═══ 15. MAGNETIC BUTTONS ═══ */
+if (!isTouch) {
+  document.querySelectorAll('.btn, .proj-cta-btn, .nav-linkedin, #to-top').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      gsap.to(btn, {
+        x: (e.clientX - (r.left + r.width / 2)) * 0.25,
+        y: (e.clientY - (r.top + r.height / 2)) * 0.25,
+        duration: 0.35, ease: 'power2.out'
+      });
+    });
+    btn.addEventListener('mouseleave', () => gsap.to(btn, { x: 0, y: 0, duration: 0.55, ease: 'elastic.out(1, 0.5)' }));
+  });
+}
+
+
+/* ═══ 16. MARQUEE (pause on hover + speed on scroll) ═══ */
 const marqueeTrack = document.querySelector('.marquee-track');
 if (marqueeTrack) {
-  marqueeTrack.addEventListener('mouseenter', () => {
-    marqueeTrack.style.animationPlayState = 'paused';
-  });
-  marqueeTrack.addEventListener('mouseleave', () => {
-    marqueeTrack.style.animationPlayState = 'running';
+  marqueeTrack.addEventListener('mouseenter', () => marqueeTrack.style.animationPlayState = 'paused');
+  marqueeTrack.addEventListener('mouseleave', () => marqueeTrack.style.animationPlayState = 'running');
+  locoScroll.on('scroll', ({ speed }) => {
+    const s = Math.abs(speed || 0);
+    marqueeTrack.style.animationDuration = Math.max(8, 28 - s * 2) + 's';
   });
 }
 
 
-/* ═══════════════════════════════════════════════
-   19. ACTIVE NAV LINK ON SCROLL
-   ═══════════════════════════════════════════════ */
-const sections  = document.querySelectorAll('section[id]');
-const navLinks  = document.querySelectorAll('.nav-links a');
-
-sections.forEach(section => {
-  ScrollTrigger.create({
-    trigger: section,
-    scroller: scrollContainer,
-    start: 'top 55%',
-    end: 'bottom 55%',
+/* ═══ 17. ACTIVE NAV LINK ═══ */
+const navLinks = document.querySelectorAll('.nav-links a');
+function highlightNav(id) {
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
+}
+document.querySelectorAll('section[id]').forEach(section => {
+  ScrollTrigger.create(st({
+    trigger: section, start: 'top 55%', end: 'bottom 55%',
     onEnter: () => highlightNav(section.id),
     onEnterBack: () => highlightNav(section.id)
-  });
-});
-
-function highlightNav(id) {
-  navLinks.forEach(a => {
-    a.style.color = '';
-    if (a.getAttribute('href') === `#${id}`) {
-      a.style.color = 'var(--rose)';
-    }
-  });
-}
-
-
-/* ═══════════════════════════════════════════════
-   20. CONTACT SECTION — BIG TEXT REVEAL
-   ═══════════════════════════════════════════════ */
-gsap.fromTo('.contact-big',
-  { opacity: 0, scale: 0.95, y: 30 },
-  {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    duration: 1.2,
-    ease: 'power4.out',
-    scrollTrigger: {
-      trigger: '.contact-big',
-      scroller: scrollContainer,
-      start: 'top 80%'
-    }
-  }
-);
-
-
-/* ═══════════════════════════════════════════════
-   21. TOOL CHIPS STAGGER
-   ═══════════════════════════════════════════════ */
-gsap.fromTo('.tool-chip',
-  { opacity: 0, scale: 0.85 },
-  {
-    opacity: 1,
-    scale: 1,
-    duration: 0.5,
-    stagger: 0.06,
-    ease: 'back.out(1.5)',
-    scrollTrigger: {
-      trigger: '.tools-row',
-      scroller: scrollContainer,
-      start: 'top 85%'
-    }
-  }
-);
-
-
-/* ═══════════════════════════════════════════════
-   22. FINAL SCROLLTRIGGER REFRESH
-   ═══════════════════════════════════════════════ */
-// Delay to let fonts + images load, then refresh
-window.addEventListener('load', () => {
-  locoScroll.update();
-  ScrollTrigger.refresh();
-});
-
-setTimeout(() => {
-  locoScroll.update();
-  ScrollTrigger.refresh();
-}, 500);
-
-
-/* ═══════════════════════════════════════════════
-   23. MAGNETIC BUTTONS
-   ═══════════════════════════════════════════════ */
-document.querySelectorAll('.btn, .proj-cta-btn, .nav-linkedin').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const rect = btn.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top  + rect.height / 2;
-    const dx = (e.clientX - cx) * 0.25;
-    const dy = (e.clientY - cy) * 0.25;
-    gsap.to(btn, { x: dx, y: dy, duration: 0.35, ease: 'power2.out' });
-  });
-  btn.addEventListener('mouseleave', () => {
-    gsap.to(btn, { x: 0, y: 0, duration: 0.55, ease: 'elastic.out(1, 0.5)' });
-  });
+  }));
 });
 
 
-/* ═══════════════════════════════════════════════
-   24. SECTION TAGS SLIDE IN
-   ═══════════════════════════════════════════════ */
-gsap.utils.toArray('.section-tag').forEach(tag => {
-  gsap.fromTo(tag,
-    { opacity: 0, x: -24 },
-    {
-      opacity: 1, x: 0,
-      duration: 0.7,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: tag,
-        scroller: scrollContainer,
-        start: 'top 88%'
-      }
-    }
-  );
-});
+/* ═══ 18. CONTACT, CERT, FOOTER, AVAIL PILL ═══ */
+gsap.fromTo('.contact-big', { opacity: 0, scale: 0.95, y: 30 },
+  { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: 'power4.out', scrollTrigger: st({ trigger: '.contact-big', start: 'top 82%' }) });
+
+gsap.fromTo('a.cert-box', { opacity: 0, scale: 0.92, y: 20 },
+  { opacity: 1, scale: 1, y: 0, duration: 0.9, ease: 'back.out(1.4)', scrollTrigger: st({ trigger: 'a.cert-box', start: 'top 88%' }) });
+
+gsap.fromTo('footer', { opacity: 0 },
+  { opacity: 1, duration: 1, ease: 'power2.out', scrollTrigger: st({ trigger: 'footer', start: 'top 98%' }) });
+
+gsap.fromTo('.avail-pill', { opacity: 0, scale: 0.9 },
+  { opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.5)', scrollTrigger: st({ trigger: '.avail-pill', start: 'top 90%' }) });
+
+gsap.to('.avail-pill', { boxShadow: '0 0 22px rgba(107,203,119,0.18)', repeat: -1, yoyo: true, duration: 1.8, ease: 'sine.inOut', delay: 1 });
+
+/* Footer year */
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 
-/* ═══════════════════════════════════════════════
-   25. CERT BOX POP-IN
-   ═══════════════════════════════════════════════ */
-gsap.fromTo('a.cert-box',
-  { opacity: 0, scale: 0.92, y: 20 },
-  {
-    opacity: 1, scale: 1, y: 0,
-    duration: 0.9,
-    ease: 'back.out(1.4)',
-    scrollTrigger: {
-      trigger: 'a.cert-box',
-      scroller: scrollContainer,
-      start: 'top 85%'
-    }
-  }
-);
-
-
-/* ═══════════════════════════════════════════════
-   26. PROJECT IDX COUNTER FLOAT
-   ═══════════════════════════════════════════════ */
-gsap.utils.toArray('.project-idx').forEach(idx => {
-  gsap.fromTo(idx,
-    { opacity: 0, y: 30 },
-    {
-      opacity: 1, y: 0,
-      duration: 1.2,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: idx.closest('.project-block'),
-        scroller: scrollContainer,
-        start: 'top 80%'
-      }
-    }
-  );
-});
-
-
-/* ═══════════════════════════════════════════════
-   27. EXP BLOCK SLIDE UP
-   ═══════════════════════════════════════════════ */
-gsap.fromTo('.exp-block',
-  { opacity: 0, y: 50 },
-  {
-    opacity: 1, y: 0,
-    duration: 1.0,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.exp-block',
-      scroller: scrollContainer,
-      start: 'top 82%'
-    }
-  }
-);
-
-
-/* ═══════════════════════════════════════════════
-   28. FOOTER FADE IN
-   ═══════════════════════════════════════════════ */
-gsap.fromTo('footer',
-  { opacity: 0 },
-  {
-    opacity: 1,
-    duration: 1.0,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: 'footer',
-      scroller: scrollContainer,
-      start: 'top 95%'
-    }
-  }
-);
-
-
-/* ═══════════════════════════════════════════════
-   29. MARQUEE SPEED ON SCROLL
-   ═══════════════════════════════════════════════ */
-locoScroll.on('scroll', ({ speed }) => {
-  if (!marqueeTrack) return;
-  const s = Math.abs(speed || 0);
-  const duration = Math.max(8, 28 - s * 2);
-  marqueeTrack.style.animationDuration = duration + 's';
-});
-
-
-/* ═══════════════════════════════════════════════
-   30. AVAIL PILL PULSE GLOW
-   ═══════════════════════════════════════════════ */
-gsap.fromTo('.avail-pill',
-  { opacity: 0, scale: 0.9 },
-  {
-    opacity: 1, scale: 1,
-    duration: 0.8,
-    ease: 'back.out(1.5)',
-    scrollTrigger: {
-      trigger: '.avail-pill',
-      scroller: scrollContainer,
-      start: 'top 88%'
-    }
-  }
-);
-
-gsap.to('.avail-pill', {
-  boxShadow: '0 0 22px rgba(107,203,119,0.18)',
-  repeat: -1,
-  yoyo: true,
-  duration: 1.8,
-  ease: 'sine.inOut',
-  delay: 1
-});
+/* ═══ 19. REFRESH AFTER ASSETS LOAD ═══ */
+window.addEventListener('load', () => { locoScroll.update(); ScrollTrigger.refresh(); });
+setTimeout(() => { locoScroll.update(); ScrollTrigger.refresh(); }, 800);
