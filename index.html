@@ -1,818 +1,773 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sanskriti Malviya — UI/UX Designer</title>
-  <meta name="description" content="Portfolio of Sanskriti Malviya — passionate UI/UX Designer crafting human-centered digital experiences." />
+  <meta name="description"
+    content="Portfolio of Sanskriti Malviya — UI/UX Designer with experience in CRM, ERP, SaaS, e-commerce and wellbeing product design." />
+  <meta name="theme-color" content="#080808" />
 
-  <!-- Locomotive Scroll CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Outfit:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
-
-  <!-- Stylesheet -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Outfit:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="./style.css" />
 </head>
+
 <body>
 
-<!-- ── Custom Cursor ── -->
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-
-<!-- ═══════════════════ SCROLL WRAPPER ═══════════════════ -->
-<div id="smooth-wrapper" data-scroll-container>
-
-<!-- ═══════════════════════════════════════════════
-     NAVIGATION
-═══════════════════════════════════════════════ -->
-<nav id="navbar">
-  <a href="#hero" class="nav-logo">S.M</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Work</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#journey">Journey</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a href="https://www.linkedin.com/in/sanskriti-malviya-697a5828b" target="_blank" class="nav-linkedin">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-    LinkedIn
-  </a>
-</nav>
-
-<!-- ═══════════════════════════════════════════════
-     HERO
-═══════════════════════════════════════════════ -->
-<section id="hero" data-scroll-section>
-  <div class="hero-bg-grid"></div>
-
-  <!-- Left: Text -->
-  <div class="hero-left">
-    <div class="hero-eyebrow" id="hero-eyebrow">
-      <div class="hero-eyebrow-dot"></div>
-      <span class="hero-eyebrow-label">UI/UX Designer · Bhopal, India</span>
-    </div>
-
-    <h1 class="hero-name" id="hero-name">
-      <span class="hero-name-first">Sanskriti</span>
-      <span class="hero-name-last">Malviya</span>
-    </h1>
-
-    <p class="hero-role" id="hero-role">Crafting human-centered digital experiences</p>
-
-    <p class="hero-bio" id="hero-bio">
-      Passionate and eager designer dedicated to creating simple, usable,
-      and beautiful interfaces — from user research to high-fidelity prototype.
-    </p>
-
-    <div class="hero-actions" id="hero-actions">
-      <a href="#projects" class="btn btn-fill">View My Work</a>
-      <a href="https://drive.google.com/file/d/1-3j79U7wPlWZslDsvTtNXlbUBwr2j1Dv/view?usp=sharing" target="_blank" class="btn btn-ghost">My Resume ↗</a>
-    </div>
-  </div>
-
-  <!-- Right: Identity card -->
-  <div class="hero-right" id="hero-card">
-    <div class="id-card">
-      <div class="bracket bracket-tl"></div>
-      <div class="bracket bracket-tr"></div>
-      <div class="bracket bracket-bl"></div>
-      <div class="bracket bracket-br"></div>
-
-      <div class="id-card-header">
-        <span class="id-card-title">Designer Profile</span>
-        <span class="id-card-status">
-          <span class="id-status-dot"></span>
-          Available
-        </span>
-      </div>
-
-      <div class="id-card-avatar">
-        <img src="./san image .jpeg" alt="Sanskriti Malviya" />
-        <div class="id-card-avatar-overlay">
-          <div class="id-card-avatar-name">
-            Sanskriti
-            <span>Malviya</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="id-card-stats">
-        <div class="id-stat">
-          <div class="id-stat-val" data-target="3" data-suffix="+">3+</div>
-          <div class="id-stat-lbl">Projects</div>
-        </div>
-        <div class="id-stat">
-          <div class="id-stat-val" data-target="95" data-suffix="%">95%</div>
-          <div class="id-stat-lbl">Positive Feedback</div>
-        </div>
-        <div class="id-stat">
-          <div class="id-stat-val">GDG</div>
-          <div class="id-stat-lbl">Marketing Lead</div>
-        </div>
-        <div class="id-stat">
-          <div class="id-stat-val">Figma</div>
-          <div class="id-stat-lbl">Expert</div>
-        </div>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="pre-inner">
+      <div class="pre-logo">S.M</div>
+      <div class="pre-count"><span id="pre-num">0</span>%</div>
+      <div class="pre-bar">
+        <div id="pre-fill"></div>
       </div>
     </div>
   </div>
 
-  <!-- Scroll cue -->
-  <div class="scroll-cue">
-    <div class="scroll-cue-line"></div>
-    <div class="scroll-cue-text">Scroll</div>
+  <!-- Cursor + scroll progress -->
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+  <div id="progress">
+    <div id="progress-fill"></div>
   </div>
-</section>
+  <a href="#hero" id="to-top" aria-label="Back to top">↑</a>
 
-<!-- ── Marquee ── -->
-<div class="marquee-wrap" data-scroll-section>
-  <div class="marquee-track">
-    <span class="marquee-item">UI/UX Design</span><span class="marquee-sep"></span>
-    <span class="marquee-item">User Research</span><span class="marquee-sep"></span>
-    <span class="marquee-item">Figma Expert</span><span class="marquee-sep"></span>
-    <span class="marquee-item">Prototyping</span><span class="marquee-sep"></span>
-    <span class="marquee-item">Design Thinking</span><span class="marquee-sep"></span>
-    <span class="marquee-item">Human-Centered Design</span><span class="marquee-sep"></span>
-    <span class="marquee-item">GDG Lead</span><span class="marquee-sep"></span>
-    <span class="marquee-item">Usability Testing</span><span class="marquee-sep"></span>
-    <span class="marquee-item">UI/UX Design</span><span class="marquee-sep"></span>
-    <span class="marquee-item">User Research</span><span class="marquee-sep"></span>
-    <span class="marquee-item">Figma Expert</span><span class="marquee-sep"></span>
-    <span class="marquee-item">Prototyping</span><span class="marquee-sep"></span>
-    <span class="marquee-item">Design Thinking</span><span class="marquee-sep"></span>
-    <span class="marquee-item">Human-Centered Design</span><span class="marquee-sep"></span>
-    <span class="marquee-item">GDG Lead</span><span class="marquee-sep"></span>
-    <span class="marquee-item">Usability Testing</span><span class="marquee-sep"></span>
-  </div>
-</div>
+  <div id="smooth-wrapper" data-scroll-container>
 
-<!-- ═══════════════════════════════════════════════
-     ABOUT
-═══════════════════════════════════════════════ -->
-<section id="about" data-scroll-section>
-  <div class="container">
-    <div class="about-grid">
+    <!-- NAV -->
+    <nav id="navbar">
+      <a href="#hero" class="nav-logo">S.M</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Work</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="https://www.linkedin.com/in/sanskriti-malviya-697a5828b" target="_blank" rel="noopener"
+        class="nav-linkedin">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg>
+        LinkedIn
+      </a>
+    </nav>
 
-      <!-- Left -->
-      <div class="gs-reveal">
-        <div class="section-tag">About Me</div>
-        <h2 class="section-heading">The mind <em>behind</em> the design</h2>
+    <!-- HERO -->
+    <section id="hero" data-scroll-section>
+      <div class="hero-bg-grid"></div>
+      <div class="hero-orb"></div>
 
-        <div class="philosophy-list">
-          <div class="phil-item gs-reveal-child">
-            <div class="phil-title">User-Centered Approach</div>
-            <div class="phil-text">Empathy at the core of every design decision — understanding user needs before picking up a pen.</div>
-          </div>
-          <div class="phil-item gs-reveal-child">
-            <div class="phil-title">Aesthetics × Function</div>
-            <div class="phil-text">Beautiful design that works. Balancing visual appeal with usability to craft interfaces people love using.</div>
-          </div>
-          <div class="phil-item gs-reveal-child">
-            <div class="phil-title">Intuitive & Accessible</div>
-            <div class="phil-text">Creating interfaces that feel completely natural, inclusive for every user on every device.</div>
-          </div>
+      <div class="hero-left">
+        <div class="hero-eyebrow" id="hero-eyebrow">
+          <div class="hero-eyebrow-dot"></div>
+          <span class="hero-eyebrow-label">UI/UX Designer · Bhopal, India</span>
         </div>
-      </div>
 
-      <!-- Right -->
-      <div class="gs-reveal">
-        <p class="about-quote">
-          Passionate about transforming <em>complex user needs</em> into
-          elegant, intuitive digital experiences.
-        </p>
-        <p class="about-body">
-          Currently in the final year of B.Tech in Computer Science Engineering at
-          Sagar Institute of Research and Technology, Bhopal. Proficient in the
-          end-to-end design process — from deep user research and wireframing to
-          high-fidelity prototyping and usability testing. Also experienced in
-          marketing leadership as GDG Lead, managing campaigns and coordinating teams.
+        <h1 class="hero-name" id="hero-name">
+          <span class="hero-name-first">Sanskriti</span>
+          <span class="hero-name-last">Malviya</span>
+        </h1>
+
+        <p class="hero-role" id="hero-role" data-text="Designing CRM, ERP, SaaS &amp; mobile experiences">Designing CRM,
+          ERP, SaaS &amp; mobile experiences</p>
+
+        <p class="hero-bio" id="hero-bio">
+          UI/UX Designer with hands-on internship experience across CRM, ERP, website and
+          mobile app design — turning research insights into clear, intuitive interfaces.
         </p>
 
-        <div class="contact-strip">
-          <a href="mailto:malviyasanskriti06@gmail.com" class="contact-row">
-            <div class="contact-icon-box">@</div>
-            malviyasanskriti06@gmail.com
-          </a>
-          <a href="tel:+917000182936" class="contact-row">
-            <div class="contact-icon-box">#</div>
-            +91 7000 182 936
-          </a>
-          <a href="https://www.linkedin.com/in/sanskriti-malviya-697a5828b" target="_blank" class="contact-row">
-            <div class="contact-icon-box">in</div>
-            Sanskriti Malviya
-          </a>
-          <div class="contact-row">
-            <div class="contact-icon-box">⌖</div>
-            Bhopal, Madhya Pradesh
-          </div>
+        <div class="hero-actions" id="hero-actions">
+          <a href="#projects" class="btn btn-fill">View My Work</a>
+          <a href="https://drive.google.com/file/d/1-3j79U7wPlWZslDsvTtNXlbUBwr2j1Dv/view?usp=sharing" target="_blank"
+            rel="noopener" class="btn btn-ghost">My Resume ↗</a>
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════
-     SKILLS
-═══════════════════════════════════════════════ -->
-<section id="skills" data-scroll-section>
-  <div class="container">
-    <div class="skills-header gs-reveal">
-      <div>
-        <div class="section-tag">Expertise</div>
-        <h2 class="section-heading">Skills &amp; <em>Craft</em></h2>
-      </div>
-    </div>
-
-    <div class="skills-grid">
-
-      <div class="skill-card gs-reveal">
-        <div class="skill-card-num">01</div>
-        <span class="skill-card-icon">✦</span>
-        <div class="skill-card-name">UI/UX Design</div>
-        <div class="skill-card-desc">Creating intuitive interfaces with deep focus on usability, aesthetics, and user delight from wireframe to pixel-perfect delivery.</div>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-fill" data-width="92"></div>
-        </div>
-        <div class="skill-tags">
-          <span class="skill-tag">Figma</span>
-          <span class="skill-tag">Canva</span>
-          <span class="skill-tag">Wireframing</span>
-          <span class="skill-tag">Visual Design</span>
-        </div>
-      </div>
-
-      <div class="skill-card gs-reveal">
-        <div class="skill-card-num">02</div>
-        <span class="skill-card-icon">◎</span>
-        <div class="skill-card-name">UX Research</div>
-        <div class="skill-card-desc">Conducting user-centered research — interviews, surveys, and usability testing to inform every design decision.</div>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-fill" data-width="85"></div>
-        </div>
-        <div class="skill-tags">
-          <span class="skill-tag">User Interviews</span>
-          <span class="skill-tag">Surveys</span>
-          <span class="skill-tag">Usability Testing</span>
-        </div>
-      </div>
-
-      <div class="skill-card gs-reveal">
-        <div class="skill-card-num">03</div>
-        <span class="skill-card-icon">▷</span>
-        <div class="skill-card-name">Prototyping</div>
-        <div class="skill-card-desc">Building interactive high-fidelity prototypes for testing, validation, and stakeholder presentations that bring designs to life.</div>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-fill" data-width="90"></div>
-        </div>
-        <div class="skill-tags">
-          <span class="skill-tag">Figma Prototypes</span>
-          <span class="skill-tag">Interactive Design</span>
-          <span class="skill-tag">Framer</span>
-        </div>
-      </div>
-
-      <div class="skill-card gs-reveal">
-        <div class="skill-card-num">04</div>
-        <span class="skill-card-icon">◈</span>
-        <div class="skill-card-name">Leadership</div>
-        <div class="skill-card-desc">GDG Marketing Team Lead — managing campaigns, coordinating cross-functional teams, and delivering public presentations.</div>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-fill" data-width="80"></div>
-        </div>
-        <div class="skill-tags">
-          <span class="skill-tag">GDG Lead</span>
-          <span class="skill-tag">Marketing</span>
-          <span class="skill-tag">Team Coordination</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Tools row -->
-    <div class="tools-row gs-reveal">
-      <div class="tools-label">Tools I Use</div>
-      <div class="tools-list">
-        <div class="tool-chip">Figma</div>
-        <div class="tool-chip">Miro</div>
-        <div class="tool-chip">Notion</div>
-        <div class="tool-chip">Canva</div>
-        <div class="tool-chip">Framer</div>
-        <div class="tool-chip">Microsoft Excel</div>
-        <div class="tool-chip">Miro</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════
-     WORK EXPERIENCE
-═══════════════════════════════════════════════ -->
-<section id="experience" data-scroll-section>
-  <div class="container">
-    <div class="gs-reveal">
-      <div class="section-tag">Experience</div>
-      <h2 class="section-heading">Where I've <em>worked</em></h2>
-    </div>
-
-    <div class="exp-block gs-reveal">
-      <div class="exp-left">
-        <div class="exp-logo">G</div>
-        <div class="exp-connector"></div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-meta">
-          <span class="exp-role">UI/UX Design Intern</span>
-          <span class="exp-sep">·</span>
-          <span class="exp-company">Gofloo.in</span>
-          <span class="exp-period">Internship</span>
-        </div>
-        <ul class="exp-points">
-          <li>Conducted in-depth user research to understand user needs and pain points across the platform.</li>
-          <li>Assisted in user testing sessions and analyzed feedback to iterate and improve designs.</li>
-          <li>Designed intuitive and visually appealing app UI screens using Figma.</li>
-          <li>Collaborated closely with the development team to improve overall user experience.</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="exp-tag">Figma</span>
-          <span class="exp-tag">User Research</span>
-          <span class="exp-tag">UI Design</span>
-          <span class="exp-tag">Usability Testing</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════
-     PROJECTS
-═══════════════════════════════════════════════ -->
-<section id="projects" data-scroll-section>
-  <div class="container">
-    <div class="gs-reveal">
-      <div class="section-tag">Selected Work</div>
-      <h2 class="section-heading">Projects I've <em>crafted</em></h2>
-    </div>
-
-    <!-- ── Project 01: Quizmate ── -->
-    <div class="project-block gs-reveal">
-      <div class="project-idx">01</div>
-
-      <div class="project-info">
-        <div class="project-eyebrow">Mobile App · UI Design · Figma</div>
-        <h3 class="project-name">Quizmate</h3>
-        <p class="project-tagline">Interactive Quiz App UI</p>
-        <p class="project-desc">
-          Designed high-fidelity UI screens for an engaging quiz application with consistent
-          typography and color systems. Focused on clarity, engagement, and smooth user progression.
-          Created reusable components and comprehensive layout systems for scalable design.
-        </p>
-
-        <div class="process-row">
-          <div class="process-pill">Research</div>
-          <div class="process-pill">Wireframe</div>
-          <div class="process-pill">UI Design</div>
-          <div class="process-pill">Prototype</div>
-        </div>
-
-        <div class="metrics-row">
-          <div class="metric-box">
-            <div class="metric-val">Feb</div>
-            <div class="metric-lbl">2026</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-val">Apr</div>
-            <div class="metric-lbl">2026</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-val">HiFi</div>
-            <div class="metric-lbl">UI Screens</div>
-          </div>
-        </div>
-
-        <div class="proj-tags">
-          <span class="proj-tag">Figma</span>
-          <span class="proj-tag">Typography</span>
-          <span class="proj-tag">Color Systems</span>
-          <span class="proj-tag">Components</span>
-          <span class="proj-tag">Mobile App</span>
-        </div>
-
-        <a href="https://www.figma.com/design/op9iCroX1A7jSE9DRj03ip/Case-study?node-id=0-1&t=RRdkwv8i3jmDWsG8-1" 
-           target="_blank" class="proj-cta-btn">
-          View Case Study on Figma
-          <span class="proj-cta-arrow">→</span>
-        </a>
-      </div>
-
-      <!-- Quizmate visual -->
-      <div class="project-visual">
-        <a href="https://www.figma.com/design/op9iCroX1A7jSE9DRj03ip/Case-study?node-id=0-1&t=RRdkwv8i3jmDWsG8-1"
-           target="_blank" class="pv-link" aria-label="Open Quizmate on Figma">
-          <div class="pv-frame">
-            <div class="bracket bracket-tl"></div>
-            <div class="bracket bracket-tr"></div>
-            <div class="bracket bracket-bl"></div>
-            <div class="bracket bracket-br"></div>
-            <div class="pv-topbar">
-              <div class="pv-dot"></div>
-              <div class="pv-dot"></div>
-              <div class="pv-dot"></div>
-              <span class="pv-url">figma.com/design/quizmate</span>
-            </div>
-
-            <div class="quiz-screen">
-              <div class="quiz-img-wrap">
-                <img src="./onboarding.png" alt="Quizmate App UI" />
-                <div class="pv-hover-overlay">
-                  <div class="pv-hover-text">Open in Figma ↗</div>
-                </div>
-              </div>
-
-              <div class="quiz-mock-ui">
-                <div class="quiz-q-bar">
-                  <div class="quiz-q-fill"></div>
-                </div>
-                <div class="quiz-option active">A &nbsp; Design Thinking</div>
-                <div class="quiz-option">B &nbsp; Agile Methodology</div>
-                <div class="quiz-option">C &nbsp; Lean UX</div>
-                <div class="quiz-submit">Submit Answer →</div>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <!-- ── Project 02: Lead Generation Dashboard ── -->
-    <div class="project-block flipped gs-reveal">
-      <div class="project-idx" style="left:auto;right:-1rem">02</div>
-
-      <div class="project-info">
-        <div class="project-eyebrow">Dashboard · SaaS UI · Figma</div>
-        <h3 class="project-name">Lead Gen Dashboard</h3>
-        <p class="project-tagline">Data-Focused Business Insights UI</p>
-        <p class="project-desc">
-          Designed a clean, data-focused dashboard for business lead generation insights.
-          Prioritized information hierarchy and usability for decision-makers.
-          Balanced visual clarity with dense data presentation to support confident business decisions.
-        </p>
-
-        <div class="process-row">
-          <div class="process-pill">Concept</div>
-          <div class="process-pill">Research</div>
-          <div class="process-pill">Design</div>
-          <div class="process-pill">Handoff</div>
-        </div>
-
-        <div class="metrics-row">
-          <div class="metric-box">
-            <div class="metric-val">SaaS</div>
-            <div class="metric-lbl">Dashboard</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-val">B2B</div>
-            <div class="metric-lbl">Focus</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-val">Data</div>
-            <div class="metric-lbl">Visualization</div>
-          </div>
-        </div>
-
-        <div class="proj-tags">
-          <span class="proj-tag">Figma</span>
-          <span class="proj-tag">Dashboard UI</span>
-          <span class="proj-tag">SaaS</span>
-          <span class="proj-tag">Data Design</span>
-          <span class="proj-tag">Business</span>
-        </div>
-
-        <a href="https://www.figma.com/design/qh7NkEwcsDpVMyA5EAAA6D/Untitled?node-id=0-1&t=0RXcTec8QJX3QX3a-1"
-           target="_blank" class="proj-cta-btn">
-          View Project on Figma
-          <span class="proj-cta-arrow">→</span>
-        </a>
-      </div>
-
-      <!-- Dashboard visual -->
-      <div class="project-visual">
-        <a href="https://www.figma.com/design/qh7NkEwcsDpVMyA5EAAA6D/Untitled?node-id=0-1&t=0RXcTec8QJX3QX3a-1"
-           target="_blank" class="pv-link" aria-label="Open Lead Gen Dashboard on Figma">
-          <div class="pv-frame">
-            <div class="bracket bracket-tl"></div>
-            <div class="bracket bracket-tr"></div>
-            <div class="bracket bracket-bl"></div>
-            <div class="bracket bracket-br"></div>
-            <div class="pv-topbar">
-              <div class="pv-dot"></div>
-              <div class="pv-dot"></div>
-              <div class="pv-dot"></div>
-              <span class="pv-url">figma.com/design/lead-dashboard</span>
-            </div>
-
-            <div class="dash-screen">
-              <div class="dash-img-wrap">
-                <img src="./JUTA 1.png" alt="Lead Generation Dashboard UI" />
-                <div class="pv-hover-overlay">
-                  <div class="pv-hover-text">Open in Figma ↗</div>
-                </div>
-              </div>
-              <div class="dash-stats-row">
-                <div class="dash-stat-mini">
-                  <div class="dash-stat-val">2.4k</div>
-                  <div class="dash-stat-lbl">Leads</div>
-                </div>
-                <div class="dash-stat-mini">
-                  <div class="dash-stat-val">68%</div>
-                  <div class="dash-stat-lbl">Conversion</div>
-                </div>
-                <div class="dash-stat-mini">
-                  <div class="dash-stat-val">↑12</div>
-                  <div class="dash-stat-lbl">Growth</div>
-                </div>
-              </div>
-              <div class="dash-bar-chart">
-                <div class="dash-bar" style="height:55%"></div>
-                <div class="dash-bar" style="height:75%"></div>
-                <div class="dash-bar" style="height:40%"></div>
-                <div class="dash-bar" style="height:90%"></div>
-                <div class="dash-bar" style="height:65%"></div>
-                <div class="dash-bar active" style="height:82%"></div>
-                <div class="dash-bar" style="height:50%"></div>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <!-- ── Project 03: Akss Mental Wellbeing ── -->
-    <div class="project-block gs-reveal">
-      <div class="project-idx">03</div>
-
-      <div class="project-info">
-        <div class="project-eyebrow">Mobile App · UX Research · Mental Wellbeing</div>
-        <h3 class="project-name">Akss</h3>
-        <p class="project-tagline">Mental Wellbeing App — UX Research Focus</p>
-        <p class="project-desc">
-          Conducted qualitative user research through interviews and surveys for a mental health
-          app. Built detailed personas, empathy maps, user journeys, and clear problem statements.
-          Designed a calm, trust-focused experience for emotional reflection and user wellness.
-        </p>
-
-        <div class="process-row">
-          <div class="process-pill">Interviews</div>
-          <div class="process-pill">Personas</div>
-          <div class="process-pill">Empathy Map</div>
-          <div class="process-pill">UX Strategy</div>
-        </div>
-
-        <div class="metrics-row">
-          <div class="metric-box">
-            <div class="metric-val">UX</div>
-            <div class="metric-lbl">Research</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-val">Qual</div>
-            <div class="metric-lbl">Methods</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-val">Care</div>
-            <div class="metric-lbl">Design</div>
-          </div>
-        </div>
-
-        <div class="proj-tags">
-          <span class="proj-tag">UX Research</span>
-          <span class="proj-tag">Personas</span>
-          <span class="proj-tag">Empathy Map</span>
-          <span class="proj-tag">User Journey</span>
-          <span class="proj-tag">Mental Health</span>
-        </div>
-      </div>
-
-      <!-- Akss visual -->
-      <div class="project-visual">
-        <div class="pv-frame pv-no-link">
+      <div class="hero-right" id="hero-card">
+        <div class="id-card spot">
           <div class="bracket bracket-tl"></div>
           <div class="bracket bracket-tr"></div>
           <div class="bracket bracket-bl"></div>
           <div class="bracket bracket-br"></div>
-          <div class="pv-topbar">
-            <div class="pv-dot"></div>
-            <div class="pv-dot"></div>
-            <div class="pv-dot"></div>
-            <span class="pv-url">UX Research Project</span>
+
+          <div class="id-card-header">
+            <span class="id-card-title">Designer Profile</span>
+            <span class="id-card-status"><span class="id-status-dot"></span>Available</span>
           </div>
 
-          <div class="akss-screen">
-            <div class="akss-header">
-              <div class="akss-greet">How are you feeling today?</div>
-              <div class="akss-sub">Track your emotional wellbeing</div>
+          <div class="id-card-avatar">
+            <img src="./san image .jpeg" alt="Sanskriti Malviya" />
+            <div class="id-card-avatar-overlay">
+              <div class="id-card-avatar-name">Sanskriti<span>Malviya</span></div>
             </div>
-            <div class="akss-moods">
-              <div class="akss-mood">😊</div>
-              <div class="akss-mood active">😌</div>
-              <div class="akss-mood">😔</div>
-              <div class="akss-mood">😤</div>
-              <div class="akss-mood">😴</div>
+          </div>
+
+          <div class="id-card-stats">
+            <div class="id-stat">
+              <div class="id-stat-val" data-target="4" data-suffix="+">4+</div>
+              <div class="id-stat-lbl">Projects</div>
             </div>
-            <div class="akss-journal">
-              <div class="akss-j-label">Today's Journal</div>
-              <div class="akss-j-line"></div>
-              <div class="akss-j-line w70"></div>
-              <div class="akss-j-line w50"></div>
+            <div class="id-stat">
+              <div class="id-stat-val" data-target="2" data-suffix="">2</div>
+              <div class="id-stat-lbl">Internships</div>
             </div>
-            <div class="akss-tags-row">
-              <div class="akss-tag">Calm</div>
-              <div class="akss-tag active">Grateful</div>
-              <div class="akss-tag">Anxious</div>
-              <div class="akss-tag">Hopeful</div>
+            <div class="id-stat">
+              <div class="id-stat-val">GDG</div>
+              <div class="id-stat-lbl">Marketing Lead</div>
             </div>
-            <div class="akss-save-btn">Save Entry ✦</div>
+            <div class="id-stat">
+              <div class="id-stat-val">Figma</div>
+              <div class="id-stat-lbl">Expert</div>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="scroll-cue">
+        <div class="scroll-cue-line"></div>
+        <div class="scroll-cue-text">Scroll</div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-wrap" data-scroll-section>
+      <div class="marquee-track">
+        <span class="marquee-item">UI/UX Design</span><span class="marquee-sep"></span>
+        <span class="marquee-item">User Research</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Design Systems</span><span class="marquee-sep"></span>
+        <span class="marquee-item">CRM / ERP UI</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Dashboard &amp; SaaS</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Prototyping</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Usability Testing</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Figma Expert</span><span class="marquee-sep"></span>
+        <span class="marquee-item">UI/UX Design</span><span class="marquee-sep"></span>
+        <span class="marquee-item">User Research</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Design Systems</span><span class="marquee-sep"></span>
+        <span class="marquee-item">CRM / ERP UI</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Dashboard &amp; SaaS</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Prototyping</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Usability Testing</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Figma Expert</span><span class="marquee-sep"></span>
+      </div>
     </div>
 
-  </div>
-</section>
+    <!-- ABOUT -->
+    <section id="about" data-scroll-section>
+      <div class="container">
+        <div class="about-grid">
+          <div class="gs-reveal">
+            <div class="section-tag">About Me</div>
+            <h2 class="section-heading">The mind <em>behind</em> the design</h2>
 
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════
-     JOURNEY — Education, Cert & Leadership
-═══════════════════════════════════════════════ -->
-<section id="journey" data-scroll-section>
-  <div class="container">
-    <div class="journey-grid">
-
-      <!-- Education -->
-      <div class="gs-reveal">
-        <div class="section-tag">Education</div>
-        <h2 class="section-heading">Academic <em>Journey</em></h2>
-
-        <div class="edu-items">
-          <div class="edu-item">
-            <div class="edu-yr">2022 – 2026</div>
-            <div class="edu-deg">B.Tech — Computer Science Engineering</div>
-            <div class="edu-school">Sagar Institute of Research & Technology, Bhopal · RGPV</div>
+            <div class="philosophy-list">
+              <div class="phil-item spot">
+                <div class="phil-title">Research-Led Decisions</div>
+                <div class="phil-text">Interviews, surveys and usability tests shape every screen — insight first,
+                  pixels second.</div>
+              </div>
+              <div class="phil-item spot">
+                <div class="phil-title">Aesthetics × Function</div>
+                <div class="phil-text">Balancing visual hierarchy with usability so complex workflows feel effortless.
+                </div>
+              </div>
+              <div class="phil-item spot">
+                <div class="phil-title">Systems Thinking</div>
+                <div class="phil-text">Unified design systems across products for consistency, speed and scalable
+                  handoff to developers.</div>
+              </div>
+            </div>
           </div>
-          <div class="edu-item">
-            <div class="edu-yr">2022</div>
-            <div class="edu-deg">Intermediate — CBSE</div>
-            <div class="edu-school">Kendriya Vidyalaya, Hoshangabad, M.P.</div>
-          </div>
-          <div class="edu-item">
-            <div class="edu-yr">2020</div>
-            <div class="edu-deg">Matriculation — CBSE</div>
-            <div class="edu-school">Kendriya Vidyalaya, Hoshangabad, M.P.</div>
+
+          <div class="gs-reveal">
+            <p class="about-quote">
+              Translating <em>complex business workflows</em> into elegant,
+              intuitive digital experiences.
+            </p>
+            <p class="about-body">
+              UI/UX Designer with internship experience across CRM, ERP, website and mobile app
+              design, skilled in user research, wireframing and high-fidelity UI in Figma.
+              Experienced in usability testing and in turning research insights into clear
+              interfaces for SaaS, e-commerce and wellbeing platforms. Completing B.Tech in
+              Computer Science at Sagar Institute of Research and Technology, Bhopal, and
+              leading marketing as GDG Lead.
+            </p>
+
+            <div class="contact-strip">
+              <a href="mailto:malviyasanskriti06@gmail.com" class="contact-row">
+                <div class="contact-icon-box">@</div>malviyasanskriti06@gmail.com
+              </a>
+              <a href="tel:+917000182936" class="contact-row">
+                <div class="contact-icon-box">#</div>+91 7000 182 936
+              </a>
+              <a href="https://www.linkedin.com/in/sanskriti-malviya-697a5828b" target="_blank" rel="noopener"
+                class="contact-row">
+                <div class="contact-icon-box">in</div>Sanskriti Malviya
+              </a>
+              <div class="contact-row">
+                <div class="contact-icon-box">⌖</div>Bhopal, Madhya Pradesh
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Certificate — clickable -->
-        <a href="https://coursera.org/share/d2a862d8845009a9fc451d8fa49c7751"
-           target="_blank" class="cert-box">
-          <div class="cert-icon">G</div>
+    <div class="divider"></div>
+
+    <!-- SKILLS -->
+    <section id="skills" data-scroll-section>
+      <div class="container">
+        <div class="skills-header gs-reveal">
           <div>
-            <div class="cert-name">Google UX Design Certificate</div>
-            <div class="cert-detail">Foundation of UX Design · 2023 · Google / Coursera</div>
-            <div class="cert-link-hint">Click to verify ↗</div>
+            <div class="section-tag">Expertise</div>
+            <h2 class="section-heading">Skills &amp; <em>Craft</em></h2>
           </div>
-        </a>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card spot">
+            <div class="skill-card-num">01</div>
+            <span class="skill-card-icon">✦</span>
+            <div class="skill-card-name">High-Fidelity UI</div>
+            <div class="skill-card-desc">Pixel-perfect interfaces with strong typography, colour theory and reusable
+              component systems.</div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-fill" data-width="92"></div>
+            </div>
+            <div class="skill-tags"><span class="skill-tag">Figma</span><span class="skill-tag">Design
+                Systems</span><span class="skill-tag">Typography &amp; Colour</span></div>
+          </div>
+
+          <div class="skill-card spot">
+            <div class="skill-card-num">02</div>
+            <span class="skill-card-icon">◎</span>
+            <div class="skill-card-name">UX Research</div>
+            <div class="skill-card-desc">Interviews, usability testing, personas, journeys and empathy maps that turn
+              insight into direction.</div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-fill" data-width="88"></div>
+            </div>
+            <div class="skill-tags"><span class="skill-tag">User Interviews</span><span
+                class="skill-tag">Personas</span><span class="skill-tag">Empathy Maps</span></div>
+          </div>
+
+          <div class="skill-card spot">
+            <div class="skill-card-num">03</div>
+            <span class="skill-card-icon">▷</span>
+            <div class="skill-card-name">Product &amp; SaaS Design</div>
+            <div class="skill-card-desc">CRM, ERP and dashboard interfaces that make dense data and complex workflows
+              easy to navigate.</div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-fill" data-width="90"></div>
+            </div>
+            <div class="skill-tags"><span class="skill-tag">CRM / ERP</span><span
+                class="skill-tag">Dashboards</span><span class="skill-tag">User Flows</span></div>
+          </div>
+
+          <div class="skill-card spot">
+            <div class="skill-card-num">04</div>
+            <span class="skill-card-icon">◈</span>
+            <div class="skill-card-name">Leadership</div>
+            <div class="skill-card-desc">GDG marketing lead and WordCamp design volunteer — coordinating teams and
+              shipping creatives.</div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-fill" data-width="80"></div>
+            </div>
+            <div class="skill-tags"><span class="skill-tag">GDG Lead</span><span
+                class="skill-tag">Collaboration</span><span class="skill-tag">Presentations</span></div>
+          </div>
+        </div>
+
+        <div class="tools-row gs-reveal">
+          <div class="tools-label">Tools I Use</div>
+          <div class="tools-list">
+            <div class="tool-chip">Figma</div>
+            <div class="tool-chip">Miro</div>
+            <div class="tool-chip">Notion</div>
+            <div class="tool-chip">Canva</div>
+            <div class="tool-chip">Framer</div>
+          </div>
+        </div>
+
+        <div class="tools-row gs-reveal" style="margin-top:1.5rem;border-top:none;padding-top:0">
+          <div class="tools-label">Competencies</div>
+          <div class="tools-list">
+            <div class="tool-chip">Information Architecture</div>
+            <div class="tool-chip">Wireframing</div>
+            <div class="tool-chip">User Journeys</div>
+            <div class="tool-chip">Usability Testing</div>
+            <div class="tool-chip">Prototyping</div>
+            <div class="tool-chip">Design Handoff</div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <!-- Leadership & Achievements -->
-      <div class="gs-reveal">
-        <div class="section-tag">Leadership & Recognition</div>
-        <h2 class="section-heading">Awards & <em>Wins</em></h2>
+    <div class="divider"></div>
 
-        <div class="ach-list">
+    <!-- EXPERIENCE -->
+    <section id="experience" data-scroll-section>
+      <div class="container">
+        <div class="gs-reveal">
+          <div class="section-tag">Experience</div>
+          <h2 class="section-heading">Where I've <em>worked</em></h2>
+        </div>
 
-          <div class="ach-item">
-            <div class="ach-rank">★</div>
-            <div>
-              <div class="ach-title">Design Volunteer — WordCamp Bhopal 2025</div>
-              <div class="ach-host">WordPress · Bhopal, India</div>
-              <div class="ach-desc">Led the design of social media creatives, event banners, and presentation materials. Maintained consistent branding and created engaging visual content.</div>
+        <div class="timeline">
+
+          <div class="exp-block gs-reveal spot">
+            <div class="exp-left">
+              <div class="exp-logo">F</div>
+              <div class="exp-connector"></div>
+            </div>
+            <div class="exp-right">
+              <div class="exp-meta">
+                <span class="exp-role">UI/UX Designer Intern</span><span class="exp-sep">·</span>
+                <span class="exp-company">FlutterFlirt</span>
+                <span class="exp-period">May 2026 – Aug 2026</span>
+              </div>
+              <ul class="exp-points">
+                <li>Designed user interfaces for CRM and ERP platforms, translating complex business workflows into
+                  intuitive, easy-to-navigate screens.</li>
+                <li>Redesigned the company website UI, improving visual hierarchy and overall user flow.</li>
+                <li>Collaborated with developers and product stakeholders to ensure design feasibility and visual
+                  consistency across CRM, ERP and website products.</li>
+                <li>Maintained a unified design system across multiple products to ensure UI consistency.</li>
+              </ul>
+              <div class="exp-tags"><span class="exp-tag">Figma</span><span class="exp-tag">CRM / ERP</span><span
+                  class="exp-tag">Website Redesign</span><span class="exp-tag">Design System</span></div>
             </div>
           </div>
 
-          <div class="ach-item">
-            <div class="ach-rank">★</div>
-            <div>
-              <div class="ach-title">GDG Marketing Team Lead — 2024</div>
-              <div class="ach-host">Google Developers Group, SIRT · Bhopal</div>
-              <div class="ach-desc">Managed the marketing team as lead at GDG SIRT. Played an important leadership role by bringing the team together.</div>
+          <div class="exp-block gs-reveal spot">
+            <div class="exp-left">
+              <div class="exp-logo">G</div>
+              <div class="exp-connector"></div>
             </div>
-          </div>
-
-          <div class="ach-item">
-            <div class="ach-rank">🥇</div>
-            <div>
-              <div class="ach-title">Winner — Kavi Sammelan</div>
-              <div class="ach-host">SIRT College, Bhopal</div>
-            </div>
-          </div>
-
-          <div class="ach-item">
-            <div class="ach-rank">🥈</div>
-            <div>
-              <div class="ach-title">Runner-up — Debate Competition</div>
-              <div class="ach-host">SAC Group, SIRT College, Bhopal</div>
-            </div>
-          </div>
-
-          <div class="ach-item">
-            <div class="ach-rank">🥈</div>
-            <div>
-              <div class="ach-title">First Runner-up — Dance Competition</div>
-              <div class="ach-host">Techno Saga, SIRT College, Bhopal</div>
+            <div class="exp-right">
+              <div class="exp-meta">
+                <span class="exp-role">UI/UX Design Intern</span><span class="exp-sep">·</span>
+                <span class="exp-company">Gofloo.in</span>
+                <span class="exp-period">Feb 2026 – Apr 2026</span>
+              </div>
+              <ul class="exp-points">
+                <li>Conducted user research and usability testing with 10 users to identify pain points in the
+                  registration flow.</li>
+                <li>Designed registration pages and related high-fidelity screens based on research insights, improving
+                  clarity and reducing drop-off.</li>
+                <li>Analysed user feedback to iterate on UI designs and enhance the overall user experience.</li>
+                <li>Collaborated with a cross-functional team to align designs with product goals.</li>
+              </ul>
+              <div class="exp-tags"><span class="exp-tag">Figma</span><span class="exp-tag">User Research</span><span
+                  class="exp-tag">Usability Testing</span><span class="exp-tag">Hi-Fi UI</span></div>
             </div>
           </div>
 
         </div>
       </div>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <div class="divider"></div>
 
-<div class="divider"></div>
+    <!-- PROJECTS -->
+    <section id="projects" data-scroll-section>
+      <div class="container">
+        <div class="gs-reveal">
+          <div class="section-tag">Selected Work</div>
+          <h2 class="section-heading">Projects I've <em>crafted</em></h2>
+        </div>
 
-<!-- ═══════════════════════════════════════════════
-     CONTACT
-═══════════════════════════════════════════════ -->
-<section id="contact" data-scroll-section>
-  <div class="container">
-    <div class="contact-inner gs-reveal">
-      <div class="section-tag" style="justify-content:center">Let's Work Together</div>
+        <!-- 01 Quizmate -->
+        <div class="project-block">
+          <div class="project-idx">01</div>
+          <div class="project-info">
+            <div class="project-eyebrow">Mobile App · UI Design · Figma</div>
+            <h3 class="project-name">Quizmate</h3>
+            <p class="project-tagline">Interactive Quiz App UI</p>
+            <p class="project-desc">Designed high-fidelity UI screens with consistent typography and colour systems.
+              Focused on clarity, engagement and smooth user progression across the quiz flow.</p>
+            <div class="process-row">
+              <div class="process-pill">Research</div>
+              <div class="process-pill">Wireframe</div>
+              <div class="process-pill">UI Design</div>
+              <div class="process-pill">Prototype</div>
+            </div>
+            <div class="metrics-row">
+              <div class="metric-box">
+                <div class="metric-val">HiFi</div>
+                <div class="metric-lbl">UI Screens</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-val">Mobile</div>
+                <div class="metric-lbl">Platform</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-val">Sys</div>
+                <div class="metric-lbl">Type + Colour</div>
+              </div>
+            </div>
+            <div class="proj-tags"><span class="proj-tag">Figma</span><span class="proj-tag">Typography</span><span
+                class="proj-tag">Color Systems</span><span class="proj-tag">Mobile App</span></div>
+            <a href="https://www.figma.com/design/op9iCroX1A7jSE9DRj03ip/Case-study?node-id=0-1&t=RRdkwv8i3jmDWsG8-1"
+              target="_blank" rel="noopener" class="proj-cta-btn">View Case Study on Figma <span
+                class="proj-cta-arrow">→</span></a>
+          </div>
+          <div class="project-visual">
+            <a href="https://www.figma.com/design/op9iCroX1A7jSE9DRj03ip/Case-study?node-id=0-1&t=RRdkwv8i3jmDWsG8-1"
+              target="_blank" rel="noopener" class="pv-link" aria-label="Open Quizmate on Figma">
+              <div class="pv-frame tilt">
+                <div class="bracket bracket-tl"></div>
+                <div class="bracket bracket-tr"></div>
+                <div class="bracket bracket-bl"></div>
+                <div class="bracket bracket-br"></div>
+                <div class="pv-topbar">
+                  <div class="pv-dot"></div>
+                  <div class="pv-dot"></div>
+                  <div class="pv-dot"></div><span class="pv-url">figma.com/design/quizmate</span>
+                </div>
+                <div class="shot"><img src="./onboarding.png" alt="Quizmate App UI" loading="lazy" />
+                  <div class="pv-hover-overlay">
+                    <div class="pv-hover-text">Open in Figma ↗</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
 
-      <h2 class="contact-big">
-        Got a project?
-        <em>Let's talk.</em>
-      </h2>
+        <!-- 02 JUTA -->
+        <div class="project-block flipped">
+          <div class="project-idx" style="left:auto;right:-1rem">02</div>
+          <div class="project-info">
+            <div class="project-eyebrow">E-commerce · Personal Project · Figma</div>
+            <h3 class="project-name">JUTA</h3>
+            <p class="project-tagline">E-commerce Shoe Buying App</p>
+            <p class="project-desc">A high-fidelity shopping experience covering browsing, product detail, cart and
+              checkout, built with a consistent design system of typography, colour and reusable components — with a
+              strong focus on prototyping.</p>
+            <div class="process-row">
+              <div class="process-pill">Browse</div>
+              <div class="process-pill">Product</div>
+              <div class="process-pill">Cart</div>
+              <div class="process-pill">Checkout</div>
+            </div>
+            <div class="metrics-row">
+              <div class="metric-box">
+                <div class="metric-val">4</div>
+                <div class="metric-lbl">Core Flows</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-val">DS</div>
+                <div class="metric-lbl">Design System</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-val">Proto</div>
+                <div class="metric-lbl">Interactive</div>
+              </div>
+            </div>
+            <div class="proj-tags"><span class="proj-tag">Figma</span><span class="proj-tag">E-commerce</span><span
+                class="proj-tag">Prototyping</span><span class="proj-tag">Components</span></div>
+            <a href="https://www.figma.com/design/qh7NkEwcsDpVMyA5EAAA6D/Untitled?node-id=0-1&t=0RXcTec8QJX3QX3a-1"
+              target="_blank" rel="noopener" class="proj-cta-btn">View Project on Figma <span
+                class="proj-cta-arrow">→</span></a>
+          </div>
+          <div class="project-visual">
+            <a href="https://www.figma.com/design/qh7NkEwcsDpVMyA5EAAA6D/Untitled?node-id=0-1&t=0RXcTec8QJX3QX3a-1"
+              target="_blank" rel="noopener" class="pv-link" aria-label="Open JUTA on Figma">
+              <div class="pv-frame tilt">
+                <div class="bracket bracket-tl"></div>
+                <div class="bracket bracket-tr"></div>
+                <div class="bracket bracket-bl"></div>
+                <div class="bracket bracket-br"></div>
+                <div class="pv-topbar">
+                  <div class="pv-dot"></div>
+                  <div class="pv-dot"></div>
+                  <div class="pv-dot"></div><span class="pv-url">figma.com/design/juta</span>
+                </div>
+                <div class="shot"><img src="./JUTA 1.png" alt="JUTA shoe app UI" loading="lazy" />
+                  <div class="pv-hover-overlay">
+                    <div class="pv-hover-text">Open in Figma ↗</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
 
-      <p class="contact-sub">
-        Currently open to freelance projects and full-time opportunities in UI/UX design.
-        I'd love to collaborate on creating exceptional user experiences.
-      </p>
+        <!-- 03 Cereva -->
+        <div class="project-block">
+          <div class="project-idx">03</div>
+          <div class="project-info">
+            <div class="project-eyebrow">Mobile App · UX Research · Wellbeing</div>
+            <h3 class="project-name">Cereva</h3>
+            <p class="project-tagline">Mental Wellbeing App — UX Research Case Study</p>
+            <p class="project-desc">Conducted qualitative research through interviews and surveys to understand
+              emotional wellbeing needs. Built personas, empathy maps and user journeys to define key problem
+              statements, then designed a calm, trust-focused experience for reflection and journaling.</p>
+            <div class="process-row">
+              <div class="process-pill">Interviews</div>
+              <div class="process-pill">Personas</div>
+              <div class="process-pill">Empathy Map</div>
+              <div class="process-pill">Journey</div>
+            </div>
+            <div class="metrics-row">
+              <div class="metric-box">
+                <div class="metric-val">UX</div>
+                <div class="metric-lbl">Research</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-val">Qual</div>
+                <div class="metric-lbl">Methods</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-val">Care</div>
+                <div class="metric-lbl">Design</div>
+              </div>
+            </div>
+            <div class="proj-tags"><span class="proj-tag">UX Research</span><span class="proj-tag">Personas</span><span
+                class="proj-tag">Empathy Map</span><span class="proj-tag">Journaling</span></div>
+          </div>
+          <div class="project-visual">
+            <div class="pv-frame tilt pv-no-link">
+              <div class="bracket bracket-tl"></div>
+              <div class="bracket bracket-tr"></div>
+              <div class="bracket bracket-bl"></div>
+              <div class="bracket bracket-br"></div>
+              <div class="pv-topbar">
+                <div class="pv-dot"></div>
+                <div class="pv-dot"></div>
+                <div class="pv-dot"></div><span class="pv-url">UX Research Project</span>
+              </div>
+              <div class="akss-screen">
+                <div class="akss-header">
+                  <div class="akss-greet">How are you feeling today?</div>
+                  <div class="akss-sub">Track your emotional wellbeing</div>
+                </div>
+                <div class="akss-moods">
+                  <div class="akss-mood">😊</div>
+                  <div class="akss-mood active">😌</div>
+                  <div class="akss-mood">😔</div>
+                  <div class="akss-mood">😤</div>
+                  <div class="akss-mood">😴</div>
+                </div>
+                <div class="akss-journal">
+                  <div class="akss-j-label">Today's Journal</div>
+                  <div class="akss-j-line"></div>
+                  <div class="akss-j-line w70"></div>
+                  <div class="akss-j-line w50"></div>
+                </div>
+                <div class="akss-tags-row">
+                  <div class="akss-tag">Calm</div>
+                  <div class="akss-tag active">Grateful</div>
+                  <div class="akss-tag">Anxious</div>
+                  <div class="akss-tag">Hopeful</div>
+                </div>
+                <div class="akss-save-btn">Save Entry ✦</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <div class="contact-btns">
-        <a href="mailto:malviyasanskriti06@gmail.com" class="btn btn-fill">
-          ✉ &nbsp; Email Me
-        </a>
-        <a href="https://www.linkedin.com/in/sanskriti-malviya-697a5828b" target="_blank" class="btn btn-ghost">
-          in &nbsp; LinkedIn
-        </a>
-        <a href="tel:+917000182936" class="btn btn-ghost">
-          ☏ &nbsp; +91 7000 182 936
-        </a>
+        <!-- 04 New project (EDIT title / text below) -->
+        <div class="project-block flipped">
+          <div class="project-idx" style="left:auto;right:-1rem">04</div>
+          <div class="project-info">
+            <div class="project-eyebrow">New · UI Design · Figma</div>
+            <h3 class="project-name">Assignment</h3>
+            <p class="project-tagline">Latest Design Project</p>
+            <p class="project-desc">A fresh design assignment taken from brief to high-fidelity screens in Figma, with
+              attention to clear visual hierarchy, consistent components and a polished end-to-end flow.</p>
+            <div class="process-row">
+              <div class="process-pill">Brief</div>
+              <div class="process-pill">Research</div>
+              <div class="process-pill">Design</div>
+              <div class="process-pill">Prototype</div>
+            </div>
+            <div class="metrics-row">
+              <div class="metric-box">
+                <div class="metric-val">New</div>
+                <div class="metric-lbl">2026</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-val">HiFi</div>
+                <div class="metric-lbl">UI Screens</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-val">Figma</div>
+                <div class="metric-lbl">Tool</div>
+              </div>
+            </div>
+            <div class="proj-tags"><span class="proj-tag">Figma</span><span class="proj-tag">UI Design</span><span
+                class="proj-tag">Prototype</span><span class="proj-tag">Components</span></div>
+            <a href="https://www.figma.com/design/hUQA0xyiaeuCgjAgOLcwty/Assignment?node-id=0-1&t=kPFsx2kAFB1tlepg-1"
+              target="_blank" rel="noopener" class="proj-cta-btn">View Project on Figma <span
+                class="proj-cta-arrow">→</span></a>
+          </div>
+          <div class="project-visual">
+            <a href="https://www.figma.com/design/hUQA0xyiaeuCgjAgOLcwty/Assignment?node-id=0-1&t=kPFsx2kAFB1tlepg-1"
+              target="_blank" rel="noopener" class="pv-link" aria-label="Open Assignment project on Figma">
+              <div class="pv-frame tilt">
+                <div class="bracket bracket-tl"></div>
+                <div class="bracket bracket-tr"></div>
+                <div class="bracket bracket-bl"></div>
+                <div class="bracket bracket-br"></div>
+                <div class="pv-topbar">
+                  <div class="pv-dot"></div>
+                  <div class="pv-dot"></div>
+                  <div class="pv-dot"></div><span class="pv-url">figma.com/design/assignment</span>
+                </div>
+                <div class="shot"><img src="./newproject.png" alt="New project UI" loading="lazy" />
+                  <div class="pv-hover-overlay">
+                    <div class="pv-hover-text">Open in Figma ↗</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
       </div>
+    </section>
 
-      <div class="avail-pill">
-        <div class="avail-dot"></div>
-        Available for opportunities
+    <div class="divider"></div>
+
+    <!-- JOURNEY -->
+    <section id="journey" data-scroll-section>
+      <div class="container">
+        <div class="journey-grid">
+
+          <div class="gs-reveal">
+            <div class="section-tag">Education</div>
+            <h2 class="section-heading">Academic <em>Journey</em></h2>
+            <div class="edu-items">
+              <div class="edu-item">
+                <div class="edu-yr">2022 – 2026 · CGPA 6.9</div>
+                <div class="edu-deg">B.Tech — Computer Science</div>
+                <div class="edu-school">Sagar Institute of Research &amp; Technology, Bhopal · RGPV</div>
+              </div>
+              <div class="edu-item">
+                <div class="edu-yr">2022</div>
+                <div class="edu-deg">Intermediate — CBSE</div>
+                <div class="edu-school">Kendriya Vidyalaya, Hoshangabad, M.P.</div>
+              </div>
+              <div class="edu-item">
+                <div class="edu-yr">2020</div>
+                <div class="edu-deg">Matriculation — CBSE</div>
+                <div class="edu-school">Kendriya Vidyalaya, Hoshangabad, M.P.</div>
+              </div>
+            </div>
+
+            <a href="https://coursera.org/share/d2a862d8845009a9fc451d8fa49c7751" target="_blank" rel="noopener"
+              class="cert-box">
+              <div class="cert-icon">G</div>
+              <div>
+                <div class="cert-name">Google UX Design Certificate</div>
+                <div class="cert-detail">Foundations of UX Design · 2023 · Google / Coursera</div>
+                <div class="cert-link-hint">Click to verify ↗</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="gs-reveal">
+            <div class="section-tag">Leadership &amp; Recognition</div>
+            <h2 class="section-heading">Awards &amp; <em>Wins</em></h2>
+            <div class="ach-list">
+              <div class="ach-item spot">
+                <div class="ach-rank">★</div>
+                <div>
+                  <div class="ach-title">Design Volunteer — WordCamp Bhopal 2025</div>
+                  <div class="ach-host">WordPress · Bhopal, India</div>
+                  <div class="ach-desc">Led the design of social media creatives, event banners and presentation
+                    materials for the event.</div>
+                </div>
+              </div>
+              <div class="ach-item spot">
+                <div class="ach-rank">★</div>
+                <div>
+                  <div class="ach-title">Marketing Lead — GDG SIRT, 2024</div>
+                  <div class="ach-host">Google Developers Group, SIRT · Bhopal</div>
+                  <div class="ach-desc">Managed the marketing team, coordinating members and driving engagement for GDG
+                    SIRT initiatives.</div>
+                </div>
+              </div>
+              <div class="ach-item spot">
+                <div class="ach-rank">🥇</div>
+                <div>
+                  <div class="ach-title">Winner — Kavi Sammelan</div>
+                  <div class="ach-host">SIRT College, Bhopal</div>
+                </div>
+              </div>
+              <div class="ach-item spot">
+                <div class="ach-rank">🥈</div>
+                <div>
+                  <div class="ach-title">Runner-up — Debate Competition</div>
+                  <div class="ach-host">SAC Group, SIRT College, Bhopal</div>
+                </div>
+              </div>
+              <div class="ach-item spot">
+                <div class="ach-rank">🥈</div>
+                <div>
+                  <div class="ach-title">First Runner-up — Dance Competition</div>
+                  <div class="ach-host">Techno Saga, SIRT College, Bhopal</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CONTACT -->
+    <section id="contact" data-scroll-section>
+      <div class="container">
+        <div class="contact-inner gs-reveal">
+          <div class="section-tag" style="justify-content:center">Let's Work Together</div>
+          <h2 class="contact-big">Got a project? <em>Let's talk.</em></h2>
+          <p class="contact-sub">Open to full-time roles and freelance projects in UI/UX design. Let's build something
+            people love to use.</p>
+          <div class="contact-btns">
+            <a href="mailto:malviyasanskriti06@gmail.com" class="btn btn-fill">✉ &nbsp; Email Me</a>
+            <a href="https://www.linkedin.com/in/sanskriti-malviya-697a5828b" target="_blank" rel="noopener"
+              class="btn btn-ghost">in &nbsp; LinkedIn</a>
+            <a href="tel:+917000182936" class="btn btn-ghost">☏ &nbsp; +91 7000 182 936</a>
+          </div>
+          <div class="avail-pill">
+            <div class="avail-dot"></div>Available for opportunities
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer data-scroll-section>
+      <div class="footer-copy">© <span id="year">2026</span> Sanskriti Malviya</div>
+      <div class="footer-brand">Sanskriti</div>
+      <div class="footer-links">
+        <a href="mailto:malviyasanskriti06@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/sanskriti-malviya-697a5828b" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://drive.google.com/file/d/1-3j79U7wPlWZslDsvTtNXlbUBwr2j1Dv/view?usp=sharing" target="_blank"
+          rel="noopener">Resume</a>
+      </div>
+    </footer>
+
   </div>
-</section>
 
-<!-- ═══════════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════════ -->
-<footer data-scroll-section>
-  <div class="footer-copy">© 2025 Sanskriti Malviya</div>
-  <div class="footer-brand">Sanskriti</div>
-  <div class="footer-links">
-    <a href="mailto:malviyasanskriti06@gmail.com">Email</a>
-    <a href="https://www.linkedin.com/in/sanskriti-malviya-697a5828b" target="_blank">LinkedIn</a>
-    <a href="https://drive.google.com/file/d/1-3j79U7wPlWZslDsvTtNXlbUBwr2j1Dv/view?usp=sharing" target="_blank">Resume</a>
-  </div>
-</footer>
-
-</div><!-- end smooth-wrapper -->
-
-<!-- GSAP -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Locomotive Scroll -->
-<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
-<!-- Main Script -->
-<script src="./main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <script src="./main.js"></script>
 </body>
+
 </html>
